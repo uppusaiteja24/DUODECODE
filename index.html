@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}BrainBridge | Learn together{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">PEER LEARNING, MADE SIMPLE</span>
+    <h1>Share what you know.<br><em>Learn what you don't.</em></h1>
+    <p>Connect with students who can help you understand a topic — and teach them something you know in return. Teachers and mentors are welcome too.</p>
+    <div class="actions">
+      <a class="button primary" href="{{ url_for('register') }}">Get started <span>→</span></a>
+      <a class="button secondary" href="{{ url_for('login') }}">Log in</a>
+    </div>
+    <div class="trust-line">A learning community where everyone can teach and everyone can learn.</div>
+  </div>
+  <div class="hero-art">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <div class="center-logo">B</div>
+    <div class="float-card card-a"><span class="avatar purple">A</span><div><b>Student A</b><small>Knows BEE · Needs PPS</small></div></div>
+    <div class="float-card card-b"><span class="avatar orange">B</span><div><b>Student B</b><small>Knows PPS · Needs BEE</small></div></div>
+    <div class="match-pill">✦ Perfect learning match</div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-heading"><span class="eyebrow">HOW IT WORKS</span><h2>Knowledge grows when it's shared.</h2></div>
+  <div class="feature-grid">
+    <article class="feature"><div class="feature-icon">01</div><h3>Create your profile</h3><p>Add the subjects and topics you can teach and the ones you want to learn.</p></article>
+    <article class="feature"><div class="feature-icon">02</div><h3>Find your match</h3><p>BrainBridge compares topics and suggests people with complementary knowledge.</p></article>
+    <article class="feature"><div class="feature-icon">03</div><h3>Learn together</h3><p>Send a request, agree on a time, and exchange knowledge. Mentors can join too.</p></article>
+  </div>
+</section>
+<section class="mentor-band"><div><span class="eyebrow">ARE YOU A TEACHER?</span><h2>Your knowledge can make a difference.</h2><p>Register as a teacher or mentor and help learners understand difficult topics.</p></div><a class="button light" href="{{ url_for('register') }}">Join as a mentor →</a></section>
+{% endblock %}

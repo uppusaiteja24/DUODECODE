@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Create account | BrainBridge{% endblock %}
+{% block content %}
+<div class="form-wrap"><div class="form-card">
+  <span class="eyebrow">JOIN THE COMMUNITY</span><h1>Create your account</h1><p class="muted">Start sharing knowledge and finding learning partners.</p>
+  <form method="post">
+    <label>Full name<input name="name" required maxlength="80" placeholder="Your name"></label>
+    <label>Email address<input name="email" type="email" required placeholder="you@example.com"></label>
+    <label>Password<input name="password" type="password" minlength="6" required placeholder="At least 6 characters"></label>
+    <label>I am joining as
+      <select name="role"><option>Student</option><option>Teacher / Mentor</option></select>
+    </label>
+    <button class="button primary full" type="submit">Create account →</button>
+  </form>
+  <p class="form-foot">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+</div></div>
+{% endblock %}

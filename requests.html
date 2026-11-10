@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Requests | BrainBridge{% endblock %}
+{% block content %}
+<div class="page-head"><div><span class="eyebrow">CONNECTIONS</span><h1>Learning requests</h1><p class="muted">Manage invitations to learn and teach.</p></div></div>
+<div class="two-col">
+<section class="panel"><span class="eyebrow">INCOMING</span><h2>Requests for you</h2>
+{% for r in incoming %}
+<div class="request-item"><b>{{ r["person_name"] }}</b><small>{{ r["person_role"] }} · {{ r["created_at"] }}</small><p>Topic: {{ r["topic"] }}</p>{% if r["message"] %}<p class="muted">{{ r["message"] }}</p>{% endif %}
+<strong class="status {{ r['status']|lower }}">{{ r["status"] }}</strong>
+{% if r["status"] == "Pending" %}<div class="actions"><form method="post" action="{{ url_for('update_request', request_id=r['id'], action='accept') }}"><button class="button primary small" type="submit">Accept</button></form><form method="post" action="{{ url_for('update_request', request_id=r['id'], action='decline') }}"><button class="button secondary small" type="submit">Decline</button></form></div>{% endif %}</div>
+{% else %}<p class="muted">No incoming requests yet.</p>{% endfor %}
+</section>
+<section class="panel"><span class="eyebrow">OUTGOING</span><h2>Requests you sent</h2>
+{% for r in outgoing %}
+<div class="request-item"><b>{{ r["person_name"] }}</b><small>{{ r["person_role"] }} · {{ r["created_at"] }}</small><p>Topic: {{ r["topic"] }}</p><strong class="status {{ r['status']|lower }}">{{ r["status"] }}</strong></div>
+{% else %}<p class="muted">You haven't sent any requests yet.</p>{% endfor %}
+</section>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}My profile | BrainBridge{% endblock %}
+{% block content %}
+<div class="form-wrap wide"><div class="form-card">
+  <span class="eyebrow">PERSONALISE YOUR MATCHES</span><h1>My learning profile</h1>
+  <p class="muted">Enter topics separated by commas. Be specific, for example: PPS - loops, arrays, functions.</p>
+  <form method="post">
+    <label>Topics I can teach<textarea name="teach_topics" rows="4" placeholder="BEE - Ohm's law, KCL, KVL; Mathematics - matrices">{{ me["teach_topics"] }}</textarea></label>
+    <label>Topics I want to learn<textarea name="learn_topics" rows="4" placeholder="PPS - loops, arrays; AEP - semiconductors">{{ me["learn_topics"] }}</textarea></label>
+    <button class="button primary full" type="submit">Save learning profile</button>
+  </form>
+</div></div>
+{% endblock %}

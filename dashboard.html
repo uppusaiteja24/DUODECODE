@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | BrainBridge{% endblock %}
+{% block content %}
+<div class="page-head"><div><span class="eyebrow">YOUR SPACE</span><h1>Welcome, {{ me["name"] }} 👋</h1><p class="muted">Your next learning connection could be one click away.</p></div><a class="button primary" href="{{ url_for('profile') }}">Edit learning profile</a></div>
+<div class="stats-grid">
+  <div class="stat"><span>Account type</span><b>{{ me["role"] }}</b></div>
+  <div class="stat"><span>Requests sent</span><b>{{ sent }}</b></div>
+  <div class="stat"><span>Pending requests</span><b>{{ received }}</b></div>
+</div>
+<div class="two-col">
+  <section class="panel"><div class="panel-title"><div><span class="eyebrow">YOUR LEARNING PROFILE</span><h2>Knowledge exchange</h2></div><a href="{{ url_for('profile') }}">Edit</a></div>
+    <h4>Topics I can teach</h4><p>{{ me["teach_topics"] or "Not added yet" }}</p>
+    <h4>Topics I want to learn</h4><p>{{ me["learn_topics"] or "Not added yet" }}</p>
+    {% if not me["teach_topics"] and not me["learn_topics"] %}<a class="button primary" href="{{ url_for('profile') }}">Set up my profile</a>{% endif %}
+  </section>
+  <section class="panel"><div class="panel-title"><div><span class="eyebrow">SUGGESTED CONNECTIONS</span><h2>People you may match with</h2></div><a href="{{ url_for('matches') }}">See all</a></div>
+    {% for item in suggestions %}
+      <div class="person-row"><span class="avatar purple">{{ item.person["name"][0]|upper }}</span><div class="person-info"><b>{{ item.person["name"] }}</b><small>{{ item.person["role"] }} · Match: {{ item.topics|join(", ") }}</small></div></div>
+    {% else %}<p class="muted">No matches yet. Add your teach/learn topics and invite classmates to join.</p>{% endfor %}
+  </section>
+</div>
+{% endblock %}

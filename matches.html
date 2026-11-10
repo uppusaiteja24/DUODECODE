@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Find partners | BrainBridge{% endblock %}
+{% block content %}
+<div class="page-head"><div><span class="eyebrow">SMART MATCHING</span><h1>Find a learning partner</h1><p class="muted">Matches are based on topics you can teach and topics you want to learn.</p></div></div>
+{% for item in results %}
+<article class="match-card">
+  <div class="match-person"><span class="avatar purple">{{ item.person["name"][0]|upper }}</span><div><h3>{{ item.person["name"] }}</h3><small>{{ item.person["role"] }}</small></div></div>
+  <div class="match-details">
+    {% if item.learn %}<p><b>You can learn:</b> {{ item.learn|join(", ") }}</p>{% endif %}
+    {% if item.teach %}<p><b>You can teach:</b> {{ item.teach|join(", ") }}</p>{% endif %}
+  </div>
+  <form class="request-form" method="post" action="{{ url_for('send_request', receiver_id=item.person['id']) }}">
+    <select name="topic" required>
+      {% for topic in item.learn + item.teach %}<option value="{{ topic }}">{{ topic }}</option>{% endfor %}
+    </select>
+    <input name="message" maxlength="250" placeholder="Add a short message (optional)">
+    <button class="button primary" type="submit">Send request</button>
+  </form>
+</article>
+{% else %}
+<div class="empty-state"><div class="empty-icon">⌕</div><h2>No matches found yet</h2><p>Add topics to your profile and ask classmates to join BrainBridge. Matching works best when profiles contain specific topics.</p><a class="button primary" href="{{ url_for('profile') }}">Update my profile</a></div>
+{% endfor %}
+{% endblock %}
